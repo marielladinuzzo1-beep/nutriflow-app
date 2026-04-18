@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary: 151 55% 32%;
+    --primary-foreground: 0 0% 98%;
+
+    --background: 210 17% 97.5%;
+    --foreground: 222 25% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 25% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 25% 12%;
+
+    --secondary: 213 14% 94%;
+    --secondary-foreground: 222 20% 25%;
+
+    --muted: 213 14% 94%;
+    --muted-foreground: 215 12% 52%;
+
+    --accent: 213 14% 93%;
+    --accent-foreground: 222 20% 20%;
+
+    --destructive: 0 72% 56%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 216 14% 89%;
+    --input: 216 14% 89%;
+    --ring: 151 55% 32%;
+
+    --radius: 0.625rem;
+
+    /* Safe area insets (iOS notch / home bar) */
+    --sat: env(safe-area-inset-top, 0px);
+    --sar: env(safe-area-inset-right, 0px);
+    --sab: env(safe-area-inset-bottom, 0px);
+    --sal: env(safe-area-inset-left, 0px);
+  }
+
+  .dark {
+    --background: 222 25% 8%;
+    --foreground: 210 40% 96%;
+    --card: 222 25% 11%;
+    --card-foreground: 210 40% 96%;
+    --popover: 222 25% 11%;
+    --popover-foreground: 210 40% 96%;
+    --primary: 151 55% 46%;
+    --primary-foreground: 0 0% 8%;
+    --secondary: 217 25% 18%;
+    --secondary-foreground: 210 40% 90%;
+    --muted: 217 25% 18%;
+    --muted-foreground: 215 18% 60%;
+    --accent: 217 25% 18%;
+    --accent-foreground: 210 40% 90%;
+    --destructive: 0 62% 42%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 25% 20%;
+    --input: 217 25% 20%;
+    --ring: 151 55% 46%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    /* Smooth tap highlight on mobile */
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    /* Use dynamic viewport height — accounts for mobile browser chrome */
+    height: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1, "ss01" 1;
+    font-size: 15px;
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+    height: 100%;
+    /* Prevent horizontal overflow on mobile */
+    overflow-x: hidden;
+  }
+
+  #root {
+    height: 100%;
+  }
+
+  h1, h2, h3, h4 {
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+  }
+
+  /* iOS: prevent input zoom (inputs must be ≥16px) */
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+  /* Restore smaller visual size via transform on desktop */
+  @media (min-width: 640px) {
+    input, select, textarea {
+      font-size: inherit !important;
+    }
+  }
+
+  /* Minimum tap target on mobile (Apple HIG: 44px) */
+  @media (max-width: 639px) {
+    button:not(.tap-sm):not([role="menuitem"]),
+    a:not(.tap-sm) {
+      min-height: 40px;
+    }
+  }
+
+  /* Thin scrollbar — desktop only */
+  @media (min-width: 640px) {
+    ::-webkit-scrollbar { width: 4px; height: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { @apply bg-border rounded-full; }
+    ::-webkit-scrollbar-thumb:hover { @apply bg-muted-foreground/30; }
+  }
+}
+
+@layer utilities {
+  /* Full dynamic viewport height — works correctly on iOS Safari */
+  .h-dvh { height: 100dvh; }
+  .min-h-dvh { min-height: 100dvh; }
+  .max-h-dvh { max-height: 100dvh; }
+
+  /* Safe-area padding helpers */
+  .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
+  .pt-safe { padding-top: env(safe-area-inset-top, 0px); }
+
+  /* Smooth fade-in for page-level content */
+  .animate-in {
+    animation: fadeUp 0.18s ease-out both;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .shadow-card {
+    box-shadow:
+      0 1px 2px 0 rgb(0 0 0 / 0.04),
+      0 2px 8px 0 rgb(0 0 0 / 0.04);
+  }
+
+  .shadow-card-hover {
+    box-shadow:
+      0 1px 2px 0 rgb(0 0 0 / 0.06),
+      0 4px 16px 0 rgb(0 0 0 / 0.07);
+  }
+
+  .sidebar-bg {
+    background: hsl(0 0% 99%);
+    border-right: 1px solid hsl(216 14% 91%);
+  }
+
+  /* Mobile drawer backdrop */
+  .drawer-backdrop {
+    @apply fixed inset-0 z-40 bg-black/50 backdrop-blur-[2px];
+  }
+}

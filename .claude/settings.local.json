@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -X POST https://api.supabase.com/v1/projects/qdhurfnwmhduebytndkf/database/query -H 'Authorization: Bearer sbp_d2e18673353421823f30e79298513a3d8b2f91e4' -H 'Content-Type: application/json' -d '{\"query\": __CMDSUB_OUTPUT__')",
+      "Bash(npm list:*)",
+      "Bash(npx vercel:*)",
+      "Bash(npx --yes vercel ls)",
+      "Bash(npm run:*)",
+      "Bash(node -e ':*)",
+      "Bash(supabase --version)",
+      "Read(//home/mariella/.config/**)",
+      "Read(//home/mariella/.supabase/**)",
+      "Bash(curl -s -X POST https://api.supabase.com/v1/projects/qdhurfnwmhduebytndkf/database/query -H 'Authorization: Bearer sbp_d2e18673353421823f30e79298513a3d8b2f91e4' -H 'Content-Type: application/json' -d '{:*)",
+      "Bash(command -v nvm)",
+      "Bash([ -f ~/.nvm/nvm.sh ])",
+      "Read(//usr/local/bin/**)",
+      "Read(//usr/bin/**)",
+      "Read(//opt/**)",
+      "Bash(break)"
+    ]
+  }
+}
