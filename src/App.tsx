@@ -21,6 +21,7 @@ import { AppointmentsPage } from '@/pages/appointments/AppointmentsPage'
 import { MealTemplatesPage } from '@/pages/meal-templates/MealTemplatesPage'
 
 // Patient portal
+import { PatientOnboardingPage } from '@/pages/patient-portal/PatientOnboardingPage'
 import { PatientPortalLayout } from '@/pages/patient-portal/PatientPortalLayout'
 import { PatientAppointmentsPage } from '@/pages/patient-portal/PatientAppointmentsPage'
 import { PatientMealPlanPage } from '@/pages/patient-portal/PatientMealPlanPage'
@@ -75,6 +76,9 @@ export default function App() {
         {/* Public */}
         <Route path="/login" element={<PublicRoute><LoginPage /></PublicRoute>} />
         <Route path="/registrazione" element={<PublicRoute><RegisterPage /></PublicRoute>} />
+
+        {/* Patient onboarding (magic link landing) — handles auth state internally */}
+        <Route path="/portale/onboarding" element={<PatientOnboardingPage />} />
 
         {/* Patient portal */}
         <Route

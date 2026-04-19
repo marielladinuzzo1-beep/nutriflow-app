@@ -59,12 +59,12 @@ function CheckboxGroup({
     <Field label={label}>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
         {options.map(opt => (
-          <label key={opt} className="flex items-center gap-2 text-sm cursor-pointer rounded-md p-2 hover:bg-muted/50 transition-colors">
+          <label key={opt} className="flex items-center gap-2.5 text-sm cursor-pointer rounded-md p-3 sm:p-2 hover:bg-muted/50 transition-colors">
             <input
               type="checkbox"
               checked={selected.includes(opt)}
               onChange={() => toggle(opt)}
-              className="h-4 w-4 rounded border-input accent-primary"
+              className="h-5 w-5 sm:h-4 sm:w-4 rounded border-input accent-primary shrink-0"
             />
             <span>{opt}</span>
           </label>
@@ -91,9 +91,9 @@ function RadioGroup({
 }) {
   return (
     <Field label={label} hint={hint}>
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
         {options.map(opt => (
-          <label key={opt} className={`flex items-center gap-1.5 text-sm cursor-pointer rounded-full px-3 py-1.5 border transition-colors ${
+          <label key={opt} className={`flex items-center gap-1.5 text-sm cursor-pointer rounded-full px-4 py-2.5 sm:px-3 sm:py-1.5 border transition-colors ${
             value === opt ? 'border-primary bg-primary/8 text-primary font-medium' : 'border-border hover:bg-muted/50'
           }`}>
             <input type="radio" checked={value === opt} onChange={() => onChange(opt)} className="sr-only" />
@@ -161,7 +161,7 @@ function FeedbackReadOnly({ fb }: { fb: PatientFeedback }) {
           {rows.map(({ label, value }) => {
             if (!value && value !== 0) return null
             return (
-              <div key={label} className="py-2.5 grid grid-cols-2 gap-2 text-sm">
+              <div key={label} className="py-2.5 grid grid-cols-1 sm:grid-cols-2 gap-1 sm:gap-2 text-sm">
                 <span className="text-muted-foreground font-medium">{label}</span>
                 <span className="break-words">{String(value)}</span>
               </div>
@@ -330,8 +330,8 @@ export function PatientFeedbackPage() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-[22px] font-semibold tracking-tight flex items-center gap-2">
-          <ClipboardList className="h-5 w-5 text-primary" />
+        <h1 className="text-xl sm:text-[22px] font-semibold tracking-tight flex items-center gap-2">
+          <ClipboardList className="h-5 w-5 text-primary shrink-0" />
           Questionario di prima anamnesi
         </h1>
         <p className="text-sm text-muted-foreground mt-0.5">

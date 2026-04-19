@@ -92,7 +92,7 @@ export function useInvitePatient() {
   return useMutation({
     mutationFn: async ({ patientId, email }: { patientId: string; email: string }) => {
       const appUrl = import.meta.env.VITE_APP_URL?.replace(/\/$/, '') || window.location.origin
-      const redirectTo = `${appUrl}/portale`
+      const redirectTo = `${appUrl}/portale/onboarding`
 
       const { error } = await supabase.auth.signInWithOtp({
         email,

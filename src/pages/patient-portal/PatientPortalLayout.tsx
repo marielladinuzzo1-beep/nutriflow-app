@@ -26,9 +26,9 @@ export function PatientPortalLayout() {
   }, [profile?.id])
 
   return (
-    <div className="flex h-screen overflow-hidden bg-background">
-      {/* Slim sidebar */}
-      <aside className="sidebar-bg flex h-screen w-[220px] shrink-0 flex-col">
+    <div className="flex flex-col sm:flex-row h-screen overflow-hidden bg-background">
+      {/* Sidebar — desktop only */}
+      <aside className="sidebar-bg hidden sm:flex h-screen w-[220px] shrink-0 flex-col">
         {/* Logo */}
         <div className="flex items-center gap-2.5 px-5 h-[60px] border-b border-border/60 shrink-0">
           <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary shadow-sm">
@@ -75,11 +75,35 @@ export function PatientPortalLayout() {
       </aside>
 
       {/* Main */}
-      <main className="flex-1 overflow-y-auto">
-        <div className="mx-auto max-w-[900px] px-8 py-8 animate-in">
+      <main className="flex-1 overflow-y-auto pb-14 sm:pb-0">
+        <div className="mx-auto max-w-[900px] px-4 py-6 sm:px-8 sm:py-8 animate-in">
           <Outlet />
         </div>
       </main>
+
+      {/* Bottom tab bar — mobile only */}
+      <nav className="sm:hidden fixed bottom-0 left-0 right-0 z-50 flex h-14 items-stretch border-t border-border bg-background">
+        {NAV.map(({ to, icon: Icon, label }) => (
+          <NavLink
+            key={to}
+            to={to}
+            className={({ isActive }) => cn(
+              'flex flex-1 flex-col items-center justify-center gap-0.5 text-[10px] font-medium transition-colors',
+              isActive ? 'text-primary' : 'text-muted-foreground'
+            )}
+          >
+            <Icon className="h-5 w-5" />
+            <span>{label}</span>
+          </NavLink>
+        ))}
+        <button
+          onClick={() => signOut()}
+          className="flex flex-1 flex-col items-center justify-center gap-0.5 text-[10px] font-medium text-muted-foreground"
+        >
+          <LogOut className="h-5 w-5" />
+          <span>Esci</span>
+        </button>
+      </nav>
     </div>
   )
 }
